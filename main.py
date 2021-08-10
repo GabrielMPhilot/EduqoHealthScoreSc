@@ -400,13 +400,13 @@ if aux_filtro_show == 1:
     ans=ans[(ans["namespace"]==select)].reset_index(drop=True)
     ans=ans.loc[0,"Risco"]
     if ans == 'Alto Risco':
-        st.write('### O Grau de risco do namespace é: ',ans," 🔥")
+        st.write('### O Grau de Risco do namespace é: ',ans," 🔥")
     elif ans == 'Risco':
-        st.write('### O Grau de risco do namespace é: ',ans," ⚠️")
+        st.write('### O Grau de Risco do namespace é: ',ans," ⚠️")
     elif ans == 'Neutro':
-        st.write('### O Grau de risco do namespace é: ',ans," 🥈")
+        st.write('### O Grau de Risco do namespace é: ',ans," 🥈")
     elif ans == 'Bom uso':
-        st.write('### O Grau de risco do namespace é: ',ans," 🥇")
+        st.write('### O Grau de Risco do namespace é: ',ans," 🥇")
 
 
 
