@@ -72,7 +72,32 @@ for i in range(len(quartil[coluna])):
     quartil.loc[i,"quartil"]=ax
     quartil.loc[i,"Risco"]=b
 
+
+# dfs com classicação de risco
+## df para uso de tabela de todos os nsm linha 280+-
 ns_quartil=quartil.copy()
+
+## nome do namespace
+name_quartil=quartil.copy()
+name_quartil['ordem']=0
+for i in range(len(name_quartil['Risco'])):
+    ab=0
+    ba=name_quartil['Risco'][i]
+    if ba =='Alto Risco':
+        ab=int(1)
+    elif ba =='Risco':
+        ab=int(2)
+    elif ba =='Neutro':
+        ab=int(3)
+    elif ba =='Bom uso':
+        ab=int(4)
+    name_quartil.loc[i,"ordem"]=ab
+name_quartil=name_quartil.sort_values(by="ordem", ascending=True).reset_index(drop=True)
+name_quartil=reorder_columns(name_quartil, "Risco", 1)
+name_quartil=name_quartil.iloc[:,0:2]
+
+
+
 # Arrumando Df
 
 quartil=quartil.groupby(['Risco'])[['quartil']].count().reset_index()

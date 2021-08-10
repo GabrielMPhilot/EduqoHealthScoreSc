@@ -6,13 +6,14 @@ import pandas as pd
 import plotly.express as px
 from variables.tabela_var import tabela_var, a_avr2
 from variables.tabela_relato import relaa
-from variables.ranking import aux_card_porcen,aux_quartil_teste,aux_card_total, ns_quartil, namespace_list, graurisco_list
+from variables.ranking import aux_card_porcen,aux_quartil_teste,aux_card_total, ns_quartil, namespace_list, graurisco_list,name_quartil
 from variables.filtro import l_media_var, a_var3, l_media_ques, l_media_relaa2, a_ques2
 from PIL import Image
 import plotly.graph_objects as go
 import time
 import matplotlib.pyplot as plt
 import matplotlib
+import base64
 
 # Funções
 def reorder_columns(dataframe, col_name, position):
@@ -28,7 +29,15 @@ def reorder_columns(dataframe, col_name, position):
     dataframe = dataframe.drop(columns=[col_name])
     dataframe.insert(loc=position, column=col_name, value=temp_col)
     return dataframe
-
+def get_table_download_link(df):
+    """Generates a link allowing the data in a given panda dataframe to be downloaded
+    in:  dataframe
+    out: href string
+    """
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+    href = f'<a href="data:file/csv;base64,{b64}">Clique aqui para baixar o CSV</a>'
+    return href
 
 # !!!adicionar grau de risco para quando selecionar o namespace
 # Colocando imagem em cima
@@ -51,9 +60,12 @@ st.sidebar.image(image,caption='Eduqo - Plataforma QMágico',use_column_width=Tr
 
 st.sidebar.markdown('Feito por: Gabriel Philot (Tio Gibbs)')
 st.sidebar.write('#### Material de apoio, caso queira saber mais sobre o projeto.')
+st.sidebar.write('####')
 st.sidebar.write("###### Forms:  [link](https://docs.google.com/forms/d/e/1FAIpQLSfmUHHnNu8wiMH2W6UuBQS354UL25D_ZIDstYqvMj7bLSs4vA/viewform)")
 st.sidebar.write("##### Docs:  [link](https://docs.google.com/document/d/1bdASwpnSDREVDR0TwKtcvcxNL4AFz-xR5WSNNTa-hwM/edit)")
 st.sidebar.write("##### Github:  [link](https://github.com/GabrielMPhilot/EduqoHealthScoreSc)")
+st.sidebar.write('#')
+st.sidebar.write('#### Resultado da classificação de nosso modelo:',get_table_download_link(name_quartil), unsafe_allow_html=True)
 
 
 # Grande ideia
@@ -123,8 +135,13 @@ fig.update_xaxes(showgrid=False)
 fig.update_layout(title = "Distribuição no N° de escolas por grau de Risco")
 
 st.plotly_chart(fig)
-
-
+"""
+"""
+left_column, right_column = st.columns(2)
+pressed = right_column.button('Download Resultado')
+if pressed:
+    left_column.write(get_table_download_link(name_quartil), unsafe_allow_html=True)
+#st.markdown(get_table_download_link(name_quartil), unsafe_allow_html=True)
 """
 ##### Com o rankeamento de risco, podemos olhar as escolas que estão em perigo e aquelas
 ##### que estão fazendo um bom uso, de acordo com suas métricas.
@@ -376,6 +393,29 @@ for i in range(100):
 '...pronto!'
 
 if aux_filtro_show == 1:
+    """
+
+    """
+    ans=name_quartil.copy()
+    ans=ans[(ans["namespace"]==select)].reset_index(drop=True)
+    ans=ans.loc[0,"Risco"]
+    if ans == 'Alto Risco':
+        st.write('### O Grau de risco do namespace é: ',ans," 🔥")
+    elif ans == 'Risco':
+        st.write('### O Grau de risco do namespace é: ',ans," ⚠️")
+    elif ans == 'Neutro':
+        st.write('### O Grau de risco do namespace é: ',ans," 🥈")
+    elif ans == 'Bom uso':
+        st.write('### O Grau de risco do namespace é: ',ans," 🥇")
+
+
+
+    """
+
+    """
+    """
+
+    """
     st.plotly_chart(figvar)
     st.plotly_chart(figques)
     st.plotly_chart(figrel)
