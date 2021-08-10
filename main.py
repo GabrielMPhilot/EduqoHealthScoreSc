@@ -36,7 +36,7 @@ def get_table_download_link(df):
     """
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-    href = f'<a href="data:file/csv;base64,{b64}">Clique aqui para baixar o CSV</a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="listanamespaces.csv">Clique aqui para baixar o CSV</a>'
     return href
 
 # !!!adicionar grau de risco para quando selecionar o namespace
