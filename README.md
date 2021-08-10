@@ -1,0 +1,2 @@
+# EduqoHealthScoreSc
+HealthScore
