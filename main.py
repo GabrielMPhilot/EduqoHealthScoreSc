@@ -134,7 +134,7 @@ st.plotly_chart(fig)
 
 """
 expander = st.expander("OBS Métricas -> (clique aqui 🖱️)")
-expander.write("(1) As Métricas que serão apresentadas a seguir, foram tratadas e modeladas para formar o ranking, porém serão mostradas de forma 'Bruta' para conseguirmos comparar as diferenças com mais facilidade. (2) A Média apresentada das escolas também são as médias 'Brutas'. (3) Nas tabelas com mapa de calor os valores máximos (mais escuros) não são globais, ou seja se referem ao valor máximo da tabela selecionada pelo filtro, a não ser que a escolha de filtro seja todos os namespaces.")
+expander.write("(1) As Métricas que serão apresentadas a seguir, foram tratadas e modeladas para formar o ranking, porém serão mostradas de forma 'Bruta' para conseguirmos comparar as diferenças com mais facilidade. (2) A Média apresentada das escolas também são as médias 'Brutas'. (3) Nas tabelas com mapa de calor os valores máximos (mais escuros) não são globais, ou seja se referem ao valor máximo da tabela selecionada pelo filtro, a não ser que a escolha de filtro seja todos os namespaces. (4) Nas visualizações por Grau de Risco e Todos os namespaces, o valor de risco apresentado nas tabelas é referente a pontuação de nosso modelo, então não necessariamente o valor de uma determinada tabela é o que faz a escola estar em risco ou não.")
 """
 
 """
