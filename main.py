@@ -48,7 +48,7 @@ st.image('[LOGO] Eduqo.png')
 
 
 """
-# 🌡️ Health Score SC - Produto padre jow
+# 🌡️ Health Score SC - Produto
 #### Projeto utilizando apenas escolas do Sucesso do cliente.
 
 """
