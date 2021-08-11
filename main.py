@@ -48,7 +48,7 @@ st.image('[LOGO] Eduqo.png')
 
 
 """
-# 🌡️ Health Score SC - Produto
+# 🌡️ Health Score SC - Produto padre jow
 #### Projeto utilizando apenas escolas do Sucesso do cliente.
 
 """
@@ -382,6 +382,8 @@ else:
     filtro_rela=reorder_columns(filtro_rela, 'Risco',1)
     filtro_rela=filtro_rela.drop(['ordem'], axis=1).reset_index(drop=True)
 
+
+
 'Aguarde só um momentinho'
 latest_iteration = st.empty()
 bar = st.progress(0)
@@ -578,5 +580,5 @@ expander_rel.write("(1) Visualização de relatórios: Os nossos relatórios sã
 (3) - Automatização da geração de csv's para o GitHub
 """
 """
-(4) - (4) - Estatística e Machine Learning para avaliar as correlações entre as váriaveis.
+(4) - Estatística e Machine Learning para avaliar as correlações entre as váriaveis.
 """
